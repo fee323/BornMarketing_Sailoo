@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050738624735",
+    "project_id": "bornmarketing-sailoo",
+    "storage_bucket": "bornmarketing-sailoo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050738624735:android:8ed5b55383c5413b6ec16a",
+        "android_client_info": {
+          "package_name": "com.cartzlink.bmapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp_nI8-3qghJiIOtyh_jWc6JLsYuByK7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
