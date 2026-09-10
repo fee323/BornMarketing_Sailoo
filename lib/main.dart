@@ -11,12 +11,18 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+  // Push notifications are optional; a missing native Firebase configuration
+  // must not prevent the app from displaying its UI.
+  try {
+    await Firebase.initializeApp();
+  } catch (error) {
+    debugPrint('Firebase unavailable; push notifications disabled: $error');
+  }
 
-  if (WebViewPlatform.instance == null) {
+  if (Platform.isAndroid && WebViewPlatform.instance == null) {
     WebViewPlatform.instance = AndroidWebViewPlatform();
   }
 
@@ -547,6 +553,7 @@ class _WebViewScreenState extends State<WebViewScreen>
   }
 
   Future<void> _registerDeviceForPush() async {
+    if (Firebase.apps.isEmpty) return;
     try {
       final messaging = FirebaseMessaging.instance;
 
@@ -577,6 +584,7 @@ class _WebViewScreenState extends State<WebViewScreen>
   }
 
   Future<void> _unregisterThisDevice() async {
+    if (Firebase.apps.isEmpty) return;
     try {
       final token = await FirebaseMessaging.instance.getToken();
       if (token == null) return;
